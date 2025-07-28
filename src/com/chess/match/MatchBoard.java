@@ -5,6 +5,8 @@ import com.chess.board.ChessPiece;
 import com.chess.board.constants.ChessConstants;
 
 public class MatchBoard extends ChessBoard {
+  public String CURRENT_PLAYER = "WHITE";
+
   public MatchBoard() {
     ChessConstants
       .INIT_POSITIONS
@@ -18,6 +20,23 @@ public class MatchBoard extends ChessBoard {
           this.getBoard()[position[1]][position[0]] = new BoardPiece(role, color, rawPosition);
         }
       });
+  }
+
+  public void makeAMove(String source, String destination) {
+    int[] srcPosition = ChessConstants.mapPositionToBoardIndexes(source);
+
+    ChessPiece[][] board = getBoard();
+    BoardPiece piece = (BoardPiece) board[srcPosition[1]][srcPosition[0]];
+
+    if (piece == null)
+      throw new RuntimeException("Invalid Move! No piece is at provided source.");
+
+    if (!piece.getColor().equals(CURRENT_PLAYER))
+      throw new RuntimeException("Inavlid movement, trying to move " + piece.getColor() + " piece , current player is: " + CURRENT_PLAYER);
+
+    piece.move(destination, board);
+    CURRENT_PLAYER = CURRENT_PLAYER == "WHITE" ? "BLACK" : "WHITE";
+    updateBoard();
   }
 
   @Override
@@ -48,5 +67,23 @@ public class MatchBoard extends ChessBoard {
     builder.append("\n   A   B   C   D   E   F   G   H");
 
     System.out.println(builder.toString());
+  }
+
+  private void updateBoard() {
+    await(1000);
+    clearBoard();
+    drawBoard();
+  }
+  private void clearBoard() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+  }
+
+  private static void await(int arg0) {
+    try {
+      Thread.sleep(arg0);
+    } catch(Exception e) {
+      System.out.println("EXCEPTION: " + e.getLocalizedMessage());
+    }
   }
 }
