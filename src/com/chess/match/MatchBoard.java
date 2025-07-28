@@ -33,18 +33,7 @@ public class MatchBoard extends ChessBoard {
       for (int colIndex = 0; colIndex<row.length; colIndex++) {
         ChessPiece piece = row[colIndex];
 
-        // if (piece != null) {
-        //   char icon = ChessConstants.PIECE_ROLES.get(((BoardPiece) piece).getRole());
-        //   builder.append(String.format(" %c ", icon));
-        // } else {
-        //   builder.append("   ");
-        // }
-
-        String icon = piece == null ? "   " :
-          String.format(" %c ", ChessConstants.PIECE_ROLES.get(((BoardPiece) piece).getRole()));
-
-        builder.append(icon);
-        
+        builder.append(String.format(" %s ", piece == null ? " " : piece));
 
         if (colIndex < row.length-1) {
           builder.append("|");
