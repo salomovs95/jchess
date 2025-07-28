@@ -13,6 +13,8 @@ public abstract class ChessPiece {
     this.position = position;
   }
 
+  public void move(String destination, ChessBoard board) {}
+
   public String toString() {
     return String.format("%c", ChessConstants.PIECE_ROLES.get(role));
   }
