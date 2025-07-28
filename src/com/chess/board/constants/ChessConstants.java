@@ -28,8 +28,8 @@ public abstract class ChessConstants {
     Map.entry("WHITE_KING",    List.of("E1"))
   );
 
-  public static int[] mapPositionToBoardIndexes(String position) {
-    Map<String, Integer> keysMap = Map.ofEntries(
+  //public static int[] mapPositionToBoardIndexes(String position) {
+  private static Map<String, Integer> CELS = Map.ofEntries(
       Map.entry("A", 0),
       Map.entry("B", 1),
       Map.entry("C", 2),
@@ -37,14 +37,23 @@ public abstract class ChessConstants {
       Map.entry("E", 4),
       Map.entry("F", 5),
       Map.entry("G", 6),
-      Map.entry("H", 7)
-    );
+      Map.entry("H", 7),
+      Map.entry("1", 7),
+      Map.entry("2", 6),
+      Map.entry("3", 5),
+      Map.entry("4", 4),
+      Map.entry("5", 3),
+      Map.entry("6", 2),
+      Map.entry("7", 1),
+      Map.entry("8", 0)
+  );
 
+  public static int[] mapPositionToBoardIndexes(String position) {
     int[] indexes = new int[2];
     String[] keys = position.split("");
 
-    indexes[0] = keysMap.get(keys[0].toUpperCase());
-    indexes[1] = Integer.parseInt(keys[1])-1;
+    indexes[0] = CELS.get(keys[0].toUpperCase());
+    indexes[1] = CELS.get(keys[1]);
 
     return indexes;
   }
