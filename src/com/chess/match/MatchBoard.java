@@ -5,8 +5,6 @@ import com.chess.board.ChessPiece;
 import com.chess.board.constants.ChessConstants;
 
 public class MatchBoard extends ChessBoard {
-  public String CURRENT_PLAYER = "WHITE";
-
   public MatchBoard() {
     ChessConstants
       .INIT_POSITIONS
@@ -22,7 +20,8 @@ public class MatchBoard extends ChessBoard {
       });
   }
 
-  public void makeAMove(String source, String destination) {
+  @Override
+  public void movePiece(String player, String source, String destination) {
     int[] srcPosition = ChessConstants.mapPositionToBoardIndexes(source);
 
     ChessPiece[][] board = getBoard();
@@ -31,11 +30,10 @@ public class MatchBoard extends ChessBoard {
     if (piece == null)
       throw new RuntimeException("Invalid Move! No piece is at provided source.");
 
-    if (!piece.getColor().equals(CURRENT_PLAYER))
-      throw new RuntimeException("Inavlid movement, trying to move " + piece.getColor() + " piece , current player is: " + CURRENT_PLAYER);
+    if (!piece.getColor().equals(player))
+      throw new RuntimeException("Inavlid movement, trying to move " + piece.getColor() + " piece , current player is: " + player);
 
     piece.move(destination, board);
-    CURRENT_PLAYER = CURRENT_PLAYER == "WHITE" ? "BLACK" : "WHITE";
     updateBoard();
   }
 
