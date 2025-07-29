@@ -19,8 +19,6 @@ public class ChessMatch {
 
       try {
         scan = new Scanner(System.in);
-        System.out.println("Current player: " + currentPlayer);
-
         System.out.print("Piece to move: ");
         String source = scan.nextLine();
 

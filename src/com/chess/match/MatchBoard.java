@@ -2,9 +2,12 @@ package com.chess.match;
 
 import com.chess.board.ChessBoard;
 import com.chess.board.ChessPiece;
+import com.chess.match.piece.BoardPiece;
 import com.chess.board.constants.ChessConstants;
 
 public class MatchBoard extends ChessBoard {
+  private String currentPlayer = "WHITE";
+
   public MatchBoard() {
     ChessConstants
       .INIT_POSITIONS
@@ -34,6 +37,7 @@ public class MatchBoard extends ChessBoard {
       throw new RuntimeException("Inavlid movement, trying to move " + piece.getColor() + " piece , current player is: " + player);
 
     piece.move(destination, board);
+    currentPlayer = player.equals("WHITE") ? "BLACK" : "WHITE";
     updateBoard();
   }
 
@@ -55,6 +59,10 @@ public class MatchBoard extends ChessBoard {
         if (colIndex < row.length-1) {
           builder.append("|");
         }
+      }
+
+      if (rowIndex == 0) {
+        builder.append(String.format("    PLAYER: %s", currentPlayer));
       }
 
       if (rowIndex != board.length-1) {
