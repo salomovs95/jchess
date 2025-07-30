@@ -3,7 +3,8 @@ package com.chess.match;
 import com.chess.board.ChessBoard;
 import com.chess.board.ChessPiece;
 import com.chess.match.piece.BoardPiece;
-import com.chess.board.constants.ChessConstants;
+import com.chess.constants.ChessConstants;
+import com.chess.utils.ChessUtils;
 
 public class MatchBoard extends ChessBoard {
   private String currentPlayer = "WHITE";
@@ -17,7 +18,7 @@ public class MatchBoard extends ChessBoard {
         String color = key.substring(0, 5);
 
         for (String rawPosition : ChessConstants.INIT_POSITIONS.get(key)) {
-          int[] position = ChessConstants.mapPositionToBoardIndexes(rawPosition);
+          int[] position = ChessUtils.mapPositionToBoardIndexes(rawPosition);
           this.getBoard()[position[1]][position[0]] = new BoardPiece(role, color, rawPosition);
         }
       });
@@ -25,7 +26,7 @@ public class MatchBoard extends ChessBoard {
 
   @Override
   public void movePiece(String player, String source, String destination) {
-    int[] srcPosition = ChessConstants.mapPositionToBoardIndexes(source);
+    int[] srcPosition = ChessUtils.mapPositionToBoardIndexes(source);
 
     ChessPiece[][] board = getBoard();
     BoardPiece piece = (BoardPiece) board[srcPosition[1]][srcPosition[0]];

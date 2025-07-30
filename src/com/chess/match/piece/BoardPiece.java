@@ -1,7 +1,8 @@
 package com.chess.match.piece;
 
 import com.chess.board.ChessPiece;
-import com.chess.board.constants.ChessConstants;
+import com.chess.constants.ChessConstants;
+import com.chess.utils.ChessUtils;
 
 public class BoardPiece implements ChessPiece {
   protected String role;
@@ -19,8 +20,8 @@ public class BoardPiece implements ChessPiece {
   public String getPosition() { return this.position; }
 
   public void move(String destination, ChessPiece[][] board) {
-    int[] sPosition = ChessConstants.mapPositionToBoardIndexes(position);
-    int[] dPosition = ChessConstants.mapPositionToBoardIndexes(destination);
+    int[] sPosition = ChessUtils.mapPositionToBoardIndexes(position);
+    int[] dPosition = ChessUtils.mapPositionToBoardIndexes(destination);
 
     position = destination;
 
@@ -28,7 +29,7 @@ public class BoardPiece implements ChessPiece {
     board[sPosition[1]][sPosition[0]] = null;
   }
 
-  public void validateMove(String destination) {}
+  public boolean validateMove(String destination, ChessPiece[][] board) { return false; }
 
   public String toString() {
     return String.format("%c", ChessConstants.PIECE_ROLES.get(role));
