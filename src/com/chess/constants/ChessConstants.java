@@ -1,4 +1,4 @@
-package com.chess.board.constants;
+package com.chess.constants;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +29,7 @@ public abstract class ChessConstants {
   );
 
   //public static int[] mapPositionToBoardIndexes(String position) {
-  private static Map<String, Integer> CELS = Map.ofEntries(
+  public static Map<String, Integer> CELS = Map.ofEntries(
       Map.entry("A", 0),
       Map.entry("B", 1),
       Map.entry("C", 2),
@@ -48,13 +48,13 @@ public abstract class ChessConstants {
       Map.entry("8", 0)
   );
 
-  public static int[] mapPositionToBoardIndexes(String position) {
-    int[] indexes = new int[2];
-    String[] keys = position.split("");
+  // public static int[] mapPositionToBoardIndexes(String position) {
+  //   int[] indexes = new int[2];
+  //   String[] keys = position.split("");
 
-    indexes[0] = CELS.get(keys[0].toUpperCase());
-    indexes[1] = CELS.get(keys[1]);
+  //   indexes[0] = CELS.get(keys[0].toUpperCase());
+  //   indexes[1] = CELS.get(keys[1]);
 
-    return indexes;
-  }
+  //   return indexes;
+  // }
 }
