@@ -3,6 +3,7 @@ package com.chess.match;
 import com.chess.board.ChessBoard;
 import com.chess.board.ChessPiece;
 import com.chess.match.piece.BoardPiece;
+import com.chess.match.piece.Pawn;
 import com.chess.constants.ChessConstants;
 import com.chess.utils.ChessUtils;
 
@@ -16,10 +17,19 @@ public class MatchBoard extends ChessBoard {
       .forEach(key->{
         String role = key.substring(6);
         String color = key.substring(0, 5);
+        ChessPiece[][] board = getBoard();
 
         for (String rawPosition : ChessConstants.INIT_POSITIONS.get(key)) {
           int[] position = ChessUtils.mapPositionToBoardIndexes(rawPosition);
-          this.getBoard()[position[1]][position[0]] = new BoardPiece(role, color, rawPosition);
+
+          switch(role) {
+            case "PAWN":
+              board[position[1]][position[0]] = new Pawn(color, rawPosition);
+              break;
+            default:
+              board[position[1]][position[0]] = new BoardPiece(role, color, rawPosition);
+              break;
+          }
         }
       });
   }
