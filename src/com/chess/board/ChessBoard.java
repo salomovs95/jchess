@@ -8,7 +8,7 @@ public abstract class ChessBoard {
   }
 
   public void drawBoard() {}
-  public void movePiece(String player, String source, String destination) {}
+  public void movePiece(String source, String destination) {}
 
   public ChessPiece[][] getBoard() {
     return boardPieces;
