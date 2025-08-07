@@ -1,6 +1,8 @@
 package com.chess.board;
 
+import java.util.Set;
+
 public interface ChessPiece {
   public void move(String destination, ChessPiece[][] board);
-  public void validateMove(String destination);
+  public Set<String> calculatePossibleMoves(ChessPiece[][] board);
 }

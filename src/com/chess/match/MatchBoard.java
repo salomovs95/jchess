@@ -3,29 +3,39 @@ package com.chess.match;
 import com.chess.board.ChessBoard;
 import com.chess.board.ChessPiece;
 import com.chess.match.piece.BoardPiece;
-import com.chess.board.constants.ChessConstants;
+import com.chess.match.piece.Pawn;
+import com.chess.constants.ChessConstants;
+import com.chess.utils.ChessUtils;
 
 public class MatchBoard extends ChessBoard {
-  private String currentPlayer = "WHITE";
+  private String currentTurn = "WHITE";
 
   public MatchBoard() {
+    ChessPiece[][] board = getBoard();
+
     ChessConstants
       .INIT_POSITIONS
       .keySet()
       .forEach(key->{
-        String role = key.substring(6);
-        String color = key.substring(0, 5);
+        String role = key.split("_")[1];
+        String color = key.split("_")[0];
 
         for (String rawPosition : ChessConstants.INIT_POSITIONS.get(key)) {
-          int[] position = ChessConstants.mapPositionToBoardIndexes(rawPosition);
-          this.getBoard()[position[1]][position[0]] = new BoardPiece(role, color, rawPosition);
+          int[] position = ChessUtils.mapPositionToBoardIndexes(rawPosition);
+          switch(role) {
+            case "PAWN":
+            default:
+              BoardPiece pawn = new Pawn(color, rawPosition);
+              board[position[1]][position[0]] = pawn;
+              break;
+          }
         }
       });
   }
 
   @Override
-  public void movePiece(String player, String source, String destination) {
-    int[] srcPosition = ChessConstants.mapPositionToBoardIndexes(source);
+  public void movePiece(String source, String destination) {
+    int[] srcPosition = ChessUtils.mapPositionToBoardIndexes(source);
 
     ChessPiece[][] board = getBoard();
     BoardPiece piece = (BoardPiece) board[srcPosition[1]][srcPosition[0]];
@@ -33,11 +43,11 @@ public class MatchBoard extends ChessBoard {
     if (piece == null)
       throw new RuntimeException("Invalid Move! No piece is at provided source.");
 
-    if (!piece.getColor().equals(player))
-      throw new RuntimeException("Inavlid movement, trying to move " + piece.getColor() + " piece , current player is: " + player);
+    if (!piece.getColor().equals(currentTurn))
+      throw new RuntimeException("Inavlid movement, player " + " was trying to move " + piece.getColor() + " piece , current player is: " + currentTurn);
 
     piece.move(destination, board);
-    currentPlayer = player.equals("WHITE") ? "BLACK" : "WHITE";
+    currentTurn = currentTurn.equals("WHITE") ? "BLACK" : "WHITE";
     updateBoard();
   }
 
@@ -45,7 +55,7 @@ public class MatchBoard extends ChessBoard {
   public void drawBoard() {
     int[] rowHeaders = {8,7,6,5,4,3,2,1,0};
     StringBuilder builder = new StringBuilder();
-    ChessPiece[][] board = this.getBoard();
+    ChessPiece[][] board = getBoard();
 
     for (int rowIndex=0; rowIndex<board.length; rowIndex++) {
       ChessPiece[] row = board[rowIndex];
@@ -62,7 +72,7 @@ public class MatchBoard extends ChessBoard {
       }
 
       if (rowIndex == 0) {
-        builder.append(String.format("    PLAYER: %s", currentPlayer));
+        builder.append(String.format("    PLAYER: %s", currentTurn));
       }
 
       if (rowIndex != board.length-1) {

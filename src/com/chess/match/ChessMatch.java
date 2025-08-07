@@ -4,7 +4,6 @@ import java.util.Scanner;
 import com.chess.board.ChessBoard;
 
 public class ChessMatch {
-  private String currentPlayer = "WHITE";
   private ChessBoard board;
 
   public ChessMatch() {
@@ -13,10 +12,11 @@ public class ChessMatch {
 
   public void startMatch() {
     board.drawBoard();
-    boolean quit = false;
-    while(!quit) {
-      Scanner scan = null;
 
+    Scanner scan = null;
+    boolean quit = false;
+
+    while(!quit) {
       try {
         scan = new Scanner(System.in);
         System.out.print("Piece to move: ");
@@ -25,10 +25,10 @@ public class ChessMatch {
         System.out.print("Where to move piece: ");
         String destination = scan.nextLine();
 
-        board.movePiece(currentPlayer, source, destination);
-        currentPlayer = currentPlayer.equals("WHITE") ? "BLACK" : "WHITE";
+        board.movePiece(source, destination);
       } catch (Exception e) {
-        System.out.println("Invalid movement! Current player: " + currentPlayer + ". Player tried to move invalid piece.");
+        System.out.println("EXCEPTION: " + e.getLocalizedMessage());
+
         if (scan != null) {
           System.out.print("Quit? (y/N) ");
           quit = scan.nextLine().toUpperCase().equals("Y");

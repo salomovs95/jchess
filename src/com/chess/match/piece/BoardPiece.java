@@ -1,9 +1,10 @@
 package com.chess.match.piece;
 
 import com.chess.board.ChessPiece;
-import com.chess.board.constants.ChessConstants;
+import com.chess.constants.ChessConstants;
+import com.chess.utils.ChessUtils;
 
-public class BoardPiece implements ChessPiece {
+public abstract class BoardPiece implements ChessPiece {
   protected String role;
   protected String color;
   protected String position;
@@ -19,16 +20,14 @@ public class BoardPiece implements ChessPiece {
   public String getPosition() { return this.position; }
 
   public void move(String destination, ChessPiece[][] board) {
-    int[] sPosition = ChessConstants.mapPositionToBoardIndexes(position);
-    int[] dPosition = ChessConstants.mapPositionToBoardIndexes(destination);
+    int[] sPosition = ChessUtils.mapPositionToBoardIndexes(position);
+    int[] dPosition = ChessUtils.mapPositionToBoardIndexes(destination);
 
     position = destination;
 
     board[dPosition[1]][dPosition[0]] = this;
     board[sPosition[1]][sPosition[0]] = null;
   }
-
-  public void validateMove(String destination) {}
 
   public String toString() {
     return String.format("%c", ChessConstants.PIECE_ROLES.get(role));
