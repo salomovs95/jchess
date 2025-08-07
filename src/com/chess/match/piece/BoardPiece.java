@@ -4,7 +4,7 @@ import com.chess.board.ChessPiece;
 import com.chess.constants.ChessConstants;
 import com.chess.utils.ChessUtils;
 
-public class BoardPiece implements ChessPiece {
+public abstract class BoardPiece implements ChessPiece {
   protected String role;
   protected String color;
   protected String position;
@@ -28,8 +28,6 @@ public class BoardPiece implements ChessPiece {
     board[dPosition[1]][dPosition[0]] = this;
     board[sPosition[1]][sPosition[0]] = null;
   }
-
-  public boolean validateMove(String destination, ChessPiece[][] board) { return false; }
 
   public String toString() {
     return String.format("%c", ChessConstants.PIECE_ROLES.get(role));
