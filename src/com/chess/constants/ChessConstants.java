@@ -16,7 +16,7 @@ public abstract class ChessConstants {
 
   public static Map<String, Set<String>> INIT_POSITIONS = Map.ofEntries(
     Map.entry("BLACK_PAWN",    Set.of("A7","B7","C7","D7","E7","F7","G7","H7")),
-    Map.entry("WHITE_PAWN",    Set.of("A2","B2","C2","D2","E2","F2","G2","H2"))
+    Map.entry("WHITE_PAWN",    Set.of("A2","B2","C2","D2","E2","F2","G2","H2")),
 
     // Map.entry("BLACK_KNIGHT",  Set.of("B8", "G8")),
     // Map.entry("WHITE_KNIGHT",  Set.of("B1","G1")),
@@ -24,8 +24,8 @@ public abstract class ChessConstants {
     // Map.entry("BLACK_BISHOP",  Set.of("C8","F8")),
     // Map.entry("WHITE_BISHOP",  Set.of("C1","F1")),
 
-    // Map.entry("BLACK_ROOK",    Set.of("A8", "H8")),
-    // Map.entry("WHITE_ROOK",    Set.of("A1","H1")),
+    Map.entry("BLACK_ROOK",    Set.of("A8", "H8")),
+    Map.entry("WHITE_ROOK",    Set.of("A1","H1"))
 
     // Map.entry("BLACK_QUEEN",   Set.of("D8")),
     // Map.entry("WHITE_QUEEN",   Set.of("D1")),
