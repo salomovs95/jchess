@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.chess.board.ChessPiece;
+import com.chess.constants.ChessConstants;
 import com.chess.utils.ChessUtils;
 
 public class Pawn extends BoardPiece {
