@@ -4,6 +4,7 @@ import com.chess.board.ChessBoard;
 import com.chess.board.ChessPiece;
 import com.chess.match.piece.Bishop;
 import com.chess.match.piece.BoardPiece;
+import com.chess.match.piece.Knight;
 import com.chess.match.piece.Pawn;
 import com.chess.match.piece.Rook;
 import com.chess.constants.ChessConstants;
@@ -28,6 +29,10 @@ public class MatchBoard extends ChessBoard {
             case "BISHOP":
               BoardPiece bishop = new Bishop(color, rawPosition);
               board[position[1]][position[0]] = bishop;
+              break;
+            case "KNIGHT":
+              BoardPiece knight = new Knight(color, rawPosition);
+              board[position[1]][position[0]] = knight;
               break;
             case "ROOK":
               BoardPiece rook = new Rook(color, rawPosition);
