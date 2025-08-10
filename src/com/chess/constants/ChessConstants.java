@@ -21,8 +21,8 @@ public abstract class ChessConstants {
     // Map.entry("BLACK_KNIGHT",  Set.of("B8", "G8")),
     // Map.entry("WHITE_KNIGHT",  Set.of("B1","G1")),
 
-    // Map.entry("BLACK_BISHOP",  Set.of("C8","F8")),
-    // Map.entry("WHITE_BISHOP",  Set.of("C1","F1")),
+    Map.entry("BLACK_BISHOP",  Set.of("C8","F8")),
+    Map.entry("WHITE_BISHOP",  Set.of("C1","F1")),
 
     Map.entry("BLACK_ROOK",    Set.of("A8", "H8")),
     Map.entry("WHITE_ROOK",    Set.of("A1","H1"))
