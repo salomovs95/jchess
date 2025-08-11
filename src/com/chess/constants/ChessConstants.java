@@ -25,10 +25,10 @@ public abstract class ChessConstants {
     Map.entry("WHITE_BISHOP",  Set.of("C1","F1")),
 
     Map.entry("BLACK_ROOK",    Set.of("A8", "H8")),
-    Map.entry("WHITE_ROOK",    Set.of("A1","H1"))
+    Map.entry("WHITE_ROOK",    Set.of("A1","H1")),
 
-    // Map.entry("BLACK_QUEEN",   Set.of("D8")),
-    // Map.entry("WHITE_QUEEN",   Set.of("D1")),
+    Map.entry("BLACK_QUEEN",   Set.of("D8")),
+    Map.entry("WHITE_QUEEN",   Set.of("D1"))
 
     // Map.entry("BLACK_KING",    Set.of("E8")),
     // Map.entry("WHITE_KING",    Set.of("E1"))
