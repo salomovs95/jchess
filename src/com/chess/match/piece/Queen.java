@@ -96,80 +96,80 @@ public class Queen extends BoardPiece {
     }
 
     // Iterate diagonally up left
-    // nextPositionVec[0] = positionVec[0]-1;
-    // nextPositionVec[1] = positionVec[1]-1;
-    // while(true) {
-    //   if (nextPositionVec[0] < 0 || nextPositionVec[1] < 0) break;
+    nextPositionVec[0] = positionVec[0]-1;
+    nextPositionVec[1] = positionVec[1]-1;
+    while(true) {
+      if (nextPositionVec[0] < 0 || nextPositionVec[1] < 0) break;
 
-    //   BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
-    //   if (piece != null) {
-    //     if (this.getColor().equals(piece.getColor())) break;
+      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      if (piece != null) {
+        if (this.getColor().equals(piece.getColor())) break;
 
-    //     possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
-    //     break;
-    //   }
+        possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
+        break;
+      }
 
-    //   possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
-    //   nextPositionVec[0] = nextPositionVec[0]-1;
-    //   nextPositionVec[1] = nextPositionVec[1]-1;
-    // }
+      possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
+      nextPositionVec[0] = nextPositionVec[0]-1;
+      nextPositionVec[1] = nextPositionVec[1]-1;
+    }
 
     // Iterate diagonally up right
-    // nextPositionVec[0] = positionVec[0]+1;
-    // nextPositionVec[1] = positionVec[1]-1;
-    // while(true) {
-    //   if (nextPositionVec[1] < 0 || nextPositionVec[0] >= 8) break;
+    nextPositionVec[0] = positionVec[0]+1;
+    nextPositionVec[1] = positionVec[1]-1;
+    while(true) {
+      if (nextPositionVec[1] < 0 || nextPositionVec[0] >= 8) break;
 
-    //   BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
-    //   if (piece != null) {
-    //     if (this.getColor().equals(piece.getColor())) break;
+      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      if (piece != null) {
+        if (this.getColor().equals(piece.getColor())) break;
 
-    //     possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
-    //     break;
-    //   }
+        possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
+        break;
+      }
 
-    //   possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
-    //   nextPositionVec[0] = nextPositionVec[0]+1;
-    //   nextPositionVec[1] = nextPositionVec[1]-1;
-    // }
+      possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
+      nextPositionVec[0] = nextPositionVec[0]+1;
+      nextPositionVec[1] = nextPositionVec[1]-1;
+    }
 
     // Iterate diagonally down left
-    // nextPositionVec[0] = positionVec[0]-1;
-    // nextPositionVec[1] = positionVec[1]+1;
-    // while(true) {
-    //   if (nextPositionVec[0] < 0 || nextPositionVec[1] >= 8) break;
+    nextPositionVec[0] = positionVec[0]-1;
+    nextPositionVec[1] = positionVec[1]+1;
+    while(true) {
+      if (nextPositionVec[0] < 0 || nextPositionVec[1] >= 8) break;
 
-    //   BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
-    //   if (piece != null) {
-    //     if (this.getColor().equals(piece.getColor())) break;
+      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      if (piece != null) {
+        if (this.getColor().equals(piece.getColor())) break;
 
-    //     possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
-    //     break;
-    //   }
+        possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
+        break;
+      }
 
-    //   possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
-    //   nextPositionVec[0] = nextPositionVec[0]-1;
-    //   nextPositionVec[1] = nextPositionVec[1]+1;
-    // }
+      possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
+      nextPositionVec[0] = nextPositionVec[0]-1;
+      nextPositionVec[1] = nextPositionVec[1]+1;
+    }
 
     // Iterate diagonally down right
-    // nextPositionVec[0] = positionVec[0]+1;
-    // nextPositionVec[1] = positionVec[1]+1;
-    // while(true) {
-    //   if (nextPositionVec[0] >= 8 || nextPositionVec[1] >= 8) break;
+    nextPositionVec[0] = positionVec[0]+1;
+    nextPositionVec[1] = positionVec[1]+1;
+    while(true) {
+      if (nextPositionVec[0] >= 8 || nextPositionVec[1] >= 8) break;
 
-    //   BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
-    //   if (piece != null) {
-    //     if (this.getColor().equals(piece.getColor())) break;
+      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      if (piece != null) {
+        if (this.getColor().equals(piece.getColor())) break;
 
-    //     possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
-    //     break;
-    //   }
+        possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
+        break;
+      }
 
-    //   possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
-    //   nextPositionVec[0] = nextPositionVec[0]+1;
-    //   nextPositionVec[1] = nextPositionVec[1]+1;
-    // }
+      possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
+      nextPositionVec[0] = nextPositionVec[0]+1;
+      nextPositionVec[1] = nextPositionVec[1]+1;
+    }
 
     return possibleMoves;
   }
