@@ -4,6 +4,7 @@ import com.chess.board.ChessBoard;
 import com.chess.board.ChessPiece;
 import com.chess.match.piece.Bishop;
 import com.chess.match.piece.BoardPiece;
+import com.chess.match.piece.King;
 import com.chess.match.piece.Knight;
 import com.chess.match.piece.Pawn;
 import com.chess.match.piece.Queen;
@@ -27,6 +28,10 @@ public class MatchBoard extends ChessBoard {
         for (String rawPosition : ChessConstants.INIT_POSITIONS.get(key)) {
           int[] position = ChessUtils.mapPositionToBoardIndexes(rawPosition);
           switch(role) {
+            case "KING":
+              BoardPiece king = new King(color, rawPosition);
+              board[position[1]][position[0]] = king;
+              break;
             case "QUEEN":
               BoardPiece queen = new Queen(color, rawPosition);
               board[position[1]][position[0]] = queen;
