@@ -28,10 +28,10 @@ public abstract class ChessConstants {
     Map.entry("WHITE_ROOK",    Set.of("A1","H1")),
 
     Map.entry("BLACK_QUEEN",   Set.of("D8")),
-    Map.entry("WHITE_QUEEN",   Set.of("D1"))
+    Map.entry("WHITE_QUEEN",   Set.of("D1")),
 
-    // Map.entry("BLACK_KING",    Set.of("E8")),
-    // Map.entry("WHITE_KING",    Set.of("E1"))
+    Map.entry("BLACK_KING",    Set.of("E8")),
+    Map.entry("WHITE_KING",    Set.of("E1"))
   );
 
   public static List<String> COL_KEYS = List.of("A","B","C","D","E","F","G","H");
