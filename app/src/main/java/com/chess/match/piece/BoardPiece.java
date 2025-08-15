@@ -30,6 +30,11 @@ public abstract class BoardPiece implements ChessPiece {
   }
 
   public String toString() {
-    return String.format("%c", ChessConstants.PIECE_ROLES.get(role));
+    String color = ChessConstants.BOARD_COLORS.get(String.format("TXT_COLOR_%s", getColor()));
+    return String.format(
+      "%s%c",
+      color,
+      ChessConstants.PIECE_ROLES.get(role)
+    );
   }
 }
