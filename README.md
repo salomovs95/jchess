@@ -6,6 +6,12 @@
 
 The greatest CLI Chess game that's ever lived!
 
+<div align="center">
+  <a>
+    <img src="https://github.com/user-attachments/assets/ca031014-aefb-41e4-a858-c3302efcb272" alt="PREVIEW" />
+  </a>
+</div>
+
 ## 📋 Sumary
 
 1. ⚙️ Tooling
@@ -41,12 +47,16 @@ java -jar app/build/libs/*.jar # to simplify
 ```
 
 Simple enough, there's two(2) inputs, the source (where the piece you want to move is on) and the destination (where you want the piece to land on).
+
 Not inventing rules, just the basic Chess rules everyone knows(or at least can learn on the internet :D).
+
 Fair enough, give it a try! Hope one can enjoy it!
 
-> [!CAUTION]
-> Do not start the application using gradle directly, due to inconsistent input behavior
+> [!WARNING]
+> Do not start the application using gradle directly, due to inconsistent input behavior.
+> 
 > Build the jar prior to running the application!
+> 
 > I warned you! :D
 
 ## 🤝 Contributing
