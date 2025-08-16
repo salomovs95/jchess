@@ -14,11 +14,11 @@ The greatest CLI Chess game that's ever lived!
 
 ## 📋 Sumary
 
-1. ⚙️ Tooling
-2. 💾 Setup Environment
-3. 💻 How to run
-4. 🤝 Contributing
-5. 👥 Contributors
+1. [⚙️ Tooling](#tooling)
+2. [💾 Setup Environment](#setup_environment)
+3. [💻 How to run](#how_to_run)
+4. [🤝 Contributing](#contributing)
+5. [👥 Contributors](#contributors)
 
 ## ⚙️ Tooling
 
