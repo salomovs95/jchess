@@ -1,5 +1,8 @@
 package com.chess.match;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.chess.board.ChessBoard;
 import com.chess.board.ChessPiece;
 import com.chess.match.piece.Bishop;
@@ -85,15 +88,27 @@ public class MatchBoard extends ChessBoard {
     for (int rowIndex=0; rowIndex<board.length; rowIndex++) {
       ChessPiece[] row = board[rowIndex];
       builder.append(String.format("%d ", rowHeaders[rowIndex]));
+      String bgColor = "BG_COLOR_YELLOW";
 
       for (int colIndex = 0; colIndex<row.length; colIndex++) {
         ChessPiece piece = row[colIndex];
 
-        builder.append(String.format(" %s ", piece == null ? " " : piece));
-
-        if (colIndex < row.length-1) {
-          builder.append("|");
+        if (rowIndex%2==0) {
+          bgColor = colIndex%2==0 ? "BG_COLOR_YELLOW" : "BG_COLOR_GREEN";
+        } else {
+          bgColor = colIndex%2==0 ? "BG_COLOR_GREEN" : "BG_COLOR_YELLOW";
         }
+
+        builder.append(String.format(
+          "%s %s %s",
+          ChessConstants.BOARD_COLORS.get(bgColor),
+          piece == null ? " " : piece,
+          ChessConstants.BOARD_COLORS.get("COLOR_RESET")
+        ));
+
+        // if (colIndex < row.length-1) {
+        //   builder.append("|");
+        // }
       }
 
       if (rowIndex == 0) {
@@ -101,12 +116,12 @@ public class MatchBoard extends ChessBoard {
       }
 
       if (rowIndex != board.length-1) {
-        builder.append("\n  -------------------------------\n");
+        builder.append("\n");
+      //   builder.append("\n  -------------------------------\n");
       }
     }
 
-    builder.append("\n   A   B   C   D   E   F   G   H");
-
+    builder.append("\n   A  B  C  D  E  F  G  H");
     System.out.println(builder.toString());
   }
 

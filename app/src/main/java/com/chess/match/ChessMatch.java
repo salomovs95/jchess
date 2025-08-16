@@ -20,10 +20,10 @@ public class ChessMatch {
       try {
         scan = new Scanner(System.in);
         System.out.print("Piece to move: ");
-        String source = scan.nextLine();
+        String source = scan.nextLine().toUpperCase();
 
         System.out.print("Where to move piece: ");
-        String destination = scan.nextLine();
+        String destination = scan.nextLine().toUpperCase();
 
         board.movePiece(source, destination);
       } catch (Exception e) {

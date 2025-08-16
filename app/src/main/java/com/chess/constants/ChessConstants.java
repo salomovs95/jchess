@@ -5,6 +5,15 @@ import java.util.Set;
 import java.util.Map;
 
 public abstract class ChessConstants {
+  public static Map<String, String> BOARD_COLORS = Map.ofEntries(
+    Map.entry("BG_COLOR_YELLOW", "\033[48;2;235;236;205m"),
+    Map.entry("BG_COLOR_GREEN", "\033[48;2;117;146;85m"),
+    // Map.entry("TXT_COLOR_WHITE", "\033[37m"),
+    Map.entry("TXT_COLOR_WHITE", "\033[38;2;176;176;176m"),
+    Map.entry("TXT_COLOR_BLACK", "\033[30m"),
+    Map.entry("COLOR_RESET", "\033[0m")
+  );
+
   public static Map<String, Character> PIECE_ROLES = Map.ofEntries(
     Map.entry("PAWN",   '♟'),
     Map.entry("KNIGHT", '♞'),
