@@ -35,3 +35,4 @@ build
 **/.settings
 **/.classpath
 **/.project
+**/.factorypath

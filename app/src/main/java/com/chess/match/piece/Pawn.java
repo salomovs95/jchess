@@ -7,10 +7,17 @@ import com.chess.board.ChessPiece;
 import com.chess.constants.ChessConstants;
 import com.chess.utils.ChessUtils;
 
-public class Pawn extends BoardPiece {
-  public Pawn(String color, String position) {
-    super("PAWN", color, position);
-  }
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class Pawn implements ChessPiece {
+  private final String role = "PAWN";
+  private String color;
+  private String position;
 
   @Override
   public void move(String destination, ChessPiece[][] board) {
@@ -18,7 +25,7 @@ public class Pawn extends BoardPiece {
     System.out.println(possibleMoves);
 
     if(possibleMoves.contains(destination)) {
-      super.move(destination, board);
+      ChessPiece.super.move(destination, board);
     }
   }
 
@@ -51,7 +58,8 @@ public class Pawn extends BoardPiece {
 
     if (ChessConstants.INIT_POSITIONS.get(color + "_" + role).contains(position)) {
       nextRow = color.equals("WHITE") ? positionVector[1]-2 : positionVector[1]+2;
-      if (board[nextRow][positionVector[0]] == null) {
+
+      if ((nextRow >= 0 || nextRow < 8) && board[nextRow][positionVector[0]] == null) {
         int[] nextPositionIndexes = { positionVector[0], nextRow };
         nextPosition = ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionIndexes);
         possiblePositionsSet.add(nextPosition);
@@ -59,5 +67,16 @@ public class Pawn extends BoardPiece {
     }
 
     return possiblePositionsSet;
+  }
+
+  @Override
+  public String toString() {
+    String textColor = String.format("TXT_COLOR_%s", getColor());
+
+    return String.format(
+      "%s%c",
+      ChessConstants.BOARD_COLORS.get(textColor),
+      ChessConstants.PIECE_ROLES.get(getRole())
+    );
   }
 }
