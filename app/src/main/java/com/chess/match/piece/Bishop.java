@@ -4,12 +4,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.chess.board.ChessPiece;
+import com.chess.constants.ChessConstants;
 import com.chess.utils.ChessUtils;
 
-public class Bishop extends BoardPiece {
-  public Bishop(String color, String position) {
-    super("BISHOP", color, position);
-  }
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class Bishop implements ChessPiece {
+  private final String role = "BISHOP";
+  private String color;
+  private String position;
 
   @Override
   public void move(String destination, ChessPiece[][] board) {
@@ -17,7 +25,7 @@ public class Bishop extends BoardPiece {
     System.out.println(possibleMoves);
 
     if (possibleMoves.contains(destination)) {
-      super.move(destination, board);
+      ChessPiece.super.move(destination, board);
     }
   }
 
@@ -35,7 +43,7 @@ public class Bishop extends BoardPiece {
         continue;
       }
 
-      BoardPiece piece = (BoardPiece) board[positionVec[1]][positionVec[0]];
+      ChessPiece piece = board[positionVec[1]][positionVec[0]];
       if (!checkPiece(piece)) break;
 
       possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(positionVec));
@@ -54,7 +62,7 @@ public class Bishop extends BoardPiece {
         continue;
       }
 
-      BoardPiece piece = (BoardPiece) board[positionVec[1]][positionVec[0]];
+      ChessPiece piece = board[positionVec[1]][positionVec[0]];
       if (!checkPiece(piece)) break;
 
       possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(positionVec));
@@ -73,7 +81,7 @@ public class Bishop extends BoardPiece {
         continue;
       }
 
-      BoardPiece piece = (BoardPiece) board[positionVec[1]][positionVec[0]];
+      ChessPiece piece = board[positionVec[1]][positionVec[0]];
       if (!checkPiece(piece)) break;
 
       possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(positionVec));
@@ -92,7 +100,7 @@ public class Bishop extends BoardPiece {
         continue;
       }
 
-      BoardPiece piece = (BoardPiece) board[positionVec[1]][positionVec[0]];
+      ChessPiece piece = board[positionVec[1]][positionVec[0]];
       if (!checkPiece(piece)) break;
 
       possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(positionVec));
@@ -104,8 +112,19 @@ public class Bishop extends BoardPiece {
     return possibleMoves;
   }
 
-  private boolean checkPiece(BoardPiece piece) {
+  private boolean checkPiece(ChessPiece piece) {
     if (piece == null) return true;
     return !getColor().equals(piece.getColor());
+  }
+
+  @Override
+  public String toString() {
+    String textColor = String.format("TXT_COLOR_%s", getColor());
+
+    return String.format(
+      "%s%c",
+      ChessConstants.BOARD_COLORS.get(textColor),
+      ChessConstants.PIECE_ROLES.get(getRole())
+    );
   }
 }

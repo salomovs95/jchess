@@ -6,7 +6,6 @@ import java.util.List;
 import com.chess.board.ChessBoard;
 import com.chess.board.ChessPiece;
 import com.chess.match.piece.Bishop;
-import com.chess.match.piece.BoardPiece;
 import com.chess.match.piece.King;
 import com.chess.match.piece.Knight;
 import com.chess.match.piece.Pawn;
@@ -32,28 +31,28 @@ public class MatchBoard extends ChessBoard {
           int[] position = ChessUtils.mapPositionToBoardIndexes(rawPosition);
           switch(role) {
             case "KING":
-              BoardPiece king = new King(color, rawPosition);
+              ChessPiece king = new King(color, rawPosition);
               board[position[1]][position[0]] = king;
               break;
             case "QUEEN":
-              BoardPiece queen = new Queen(color, rawPosition);
+              ChessPiece queen = new Queen(color, rawPosition);
               board[position[1]][position[0]] = queen;
               break;
             case "BISHOP":
-              BoardPiece bishop = new Bishop(color, rawPosition);
+              ChessPiece bishop = new Bishop(color, rawPosition);
               board[position[1]][position[0]] = bishop;
               break;
             case "KNIGHT":
-              BoardPiece knight = new Knight(color, rawPosition);
+              ChessPiece knight = new Knight(color, rawPosition);
               board[position[1]][position[0]] = knight;
               break;
             case "ROOK":
-              BoardPiece rook = new Rook(color, rawPosition);
+              ChessPiece rook = new Rook(color, rawPosition);
               board[position[1]][position[0]] = rook;
               break;
             case "PAWN":
             default:
-              BoardPiece pawn = new Pawn(color, rawPosition);
+              ChessPiece pawn = new Pawn(color, rawPosition);
               board[position[1]][position[0]] = pawn;
               break;
           }
@@ -66,7 +65,7 @@ public class MatchBoard extends ChessBoard {
     int[] srcPosition = ChessUtils.mapPositionToBoardIndexes(source);
 
     ChessPiece[][] board = getBoard();
-    BoardPiece piece = (BoardPiece) board[srcPosition[1]][srcPosition[0]];
+    ChessPiece piece =  board[srcPosition[1]][srcPosition[0]];
 
     if (piece == null)
       throw new RuntimeException("Invalid Move! No piece is at provided source.");

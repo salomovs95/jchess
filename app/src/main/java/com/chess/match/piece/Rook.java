@@ -4,12 +4,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.chess.board.ChessPiece;
+import com.chess.constants.ChessConstants;
 import com.chess.utils.ChessUtils;
 
-public class Rook extends BoardPiece {
-  public Rook(String color, String position) {
-    super("ROOK", color, position);
-  }
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class Rook implements ChessPiece {
+  private final String role = "ROOK";
+  private String color;
+  private String position;
 
   @Override
   public void move(String destination, ChessPiece[][] board) {
@@ -17,7 +25,7 @@ public class Rook extends BoardPiece {
     System.out.println(possibleMoves);
 
     if (possibleMoves.contains(destination)) {
-      super.move(destination, board);
+      ChessPiece.super.move(destination, board);
     }
   }
 
@@ -29,7 +37,7 @@ public class Rook extends BoardPiece {
     for (int index=positionVector[1]; index>0; index--) {
       if (index==positionVector[1]) continue;
 
-      BoardPiece piece = (BoardPiece) board[index][positionVector[0]];
+      ChessPiece piece = board[index][positionVector[0]];
 
       if (piece != null) {
         if (piece.getColor().equals(this.getColor())) break;
@@ -47,7 +55,7 @@ public class Rook extends BoardPiece {
     for (int index=positionVector[1]; index<8; index++) {
       if (index==positionVector[1]) continue;
 
-      BoardPiece piece = (BoardPiece) board[index][positionVector[0]];
+      ChessPiece piece = board[index][positionVector[0]];
 
       if (piece != null) {
         if (piece.getColor().equals(this.getColor())) break;
@@ -65,7 +73,7 @@ public class Rook extends BoardPiece {
     for (int index=positionVector[0]; index>0; index--) {
       if (index==positionVector[0]) continue;
 
-      BoardPiece piece = (BoardPiece) board[positionVector[1]][index];
+      ChessPiece piece = board[positionVector[1]][index];
 
       if (piece != null) {
         if (piece.getColor().equals(this.getColor())) break;
@@ -83,7 +91,7 @@ public class Rook extends BoardPiece {
     for (int index=positionVector[0]; index<8; index++) {
       if (index==positionVector[0]) continue;
 
-      BoardPiece piece = (BoardPiece) board[positionVector[1]][index];
+      ChessPiece piece = board[positionVector[1]][index];
 
       if (piece != null) {
         if (piece.getColor().equals(this.getColor())) break;
@@ -99,5 +107,16 @@ public class Rook extends BoardPiece {
     }
 
     return availablePositions;
+  }
+
+  @Override
+  public String toString() {
+    String textColor = String.format("TXT_COLOR_%s", getColor());
+
+    return String.format(
+      "%s%c",
+      ChessConstants.BOARD_COLORS.get(textColor),
+      ChessConstants.PIECE_ROLES.get(getRole())
+    );
   }
 }

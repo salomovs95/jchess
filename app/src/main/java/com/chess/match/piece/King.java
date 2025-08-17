@@ -4,12 +4,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.chess.board.ChessPiece;
+import com.chess.constants.ChessConstants;
 import com.chess.utils.ChessUtils;
 
-public class King extends BoardPiece {
-  public King(String color, String position) {
-    super("KING", color, position);
-  }
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class King implements ChessPiece {
+  private final String role = "KING";
+  private String color;
+  private String position;
 
   @Override
   public void move(String destination, ChessPiece[][] board) {
@@ -17,7 +25,7 @@ public class King extends BoardPiece {
     System.out.println(possibleMoves);
 
     if (possibleMoves.contains(destination)) {
-      super.move(destination, board);
+      ChessPiece.super.move(destination, board);
     }
   }
 
@@ -28,7 +36,7 @@ public class King extends BoardPiece {
 
     if (positionVec[1]-1 >= 0) {
       // TODO: Position Above
-      BoardPiece piece = (BoardPiece) board[positionVec[1]-1][positionVec[0]];
+      ChessPiece piece = board[positionVec[1]-1][positionVec[0]];
       if (validatePiece(piece)) {
         int[] nextPositionVec = { positionVec[0], positionVec[1]-1 };
         possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
@@ -36,7 +44,7 @@ public class King extends BoardPiece {
 
       // TODO: Position Above-Left
       if (positionVec[0]-1 >= 0) {
-        piece = (BoardPiece) board[positionVec[0]-1][positionVec[1]-1];
+        piece = board[positionVec[0]-1][positionVec[1]-1];
         if (validatePiece(piece)) {
           int[] nextPositionVec = { positionVec[0]-1, positionVec[1]-1 };
           possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
@@ -45,7 +53,7 @@ public class King extends BoardPiece {
 
       // TODO: Position Above-Right
       if (positionVec[0]+1 < 8) {
-        piece = (BoardPiece) board[positionVec[0]+1][positionVec[1]-1];
+        piece = board[positionVec[0]+1][positionVec[1]-1];
           if (validatePiece(piece)) {
           int[] nextPositionVec = { positionVec[0]+1, positionVec[1]-1 };
           possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
@@ -55,7 +63,7 @@ public class King extends BoardPiece {
 
     if (positionVec[1]+1 < 8) {
       // TODO: Piece Below
-      BoardPiece piece = (BoardPiece) board[positionVec[1]+1][positionVec[0]];
+      ChessPiece piece = board[positionVec[1]+1][positionVec[0]];
       if (validatePiece(piece)) {
         int[] nextPositionVec = { positionVec[0], positionVec[1]+1};
         possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
@@ -63,7 +71,7 @@ public class King extends BoardPiece {
 
       // TODO: Piece At Bottom Left
       if (positionVec[0]-1 >= 0) {
-        piece = (BoardPiece) board[positionVec[1]+1][positionVec[0]-1];
+        piece = board[positionVec[1]+1][positionVec[0]-1];
         if (validatePiece(piece)) {
           int[] nextPositionVec = { positionVec[0]-1, positionVec[1]+1};
           possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
@@ -72,7 +80,7 @@ public class King extends BoardPiece {
 
       // TODO: Piece At Bottom Right
       if (positionVec[0]+1 < 8) {
-        piece = (BoardPiece) board[positionVec[1]+1][positionVec[0]+1];
+        piece = board[positionVec[1]+1][positionVec[0]+1];
         if (validatePiece(piece)) {
           int[] nextPositionVec = { positionVec[0]+1, positionVec[1]+1};
           possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
@@ -82,7 +90,7 @@ public class King extends BoardPiece {
 
     // TODO: Piece At Left Side
     if (positionVec[0]-1 >= 0) {
-      BoardPiece piece = (BoardPiece) board[positionVec[1]][positionVec[0]-1];
+      ChessPiece piece = board[positionVec[1]][positionVec[0]-1];
       if (validatePiece(piece)) {
         int[] nextPositionVec = { positionVec[0], positionVec[1]+1};
         possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
@@ -91,7 +99,7 @@ public class King extends BoardPiece {
 
     // TODO: Piece At Right Side
     if (positionVec[0]+1 < 8) {
-      BoardPiece piece = (BoardPiece) board[positionVec[1]][positionVec[0]+1];
+      ChessPiece piece = board[positionVec[1]][positionVec[0]+1];
       if (validatePiece(piece)) {
         int[] nextPositionVec = { positionVec[0], positionVec[1]+1 };
         possibleMoves.add(ChessUtils.mapPositionIndexesToBoardPlaces(nextPositionVec));
@@ -101,10 +109,21 @@ public class King extends BoardPiece {
     return possibleMoves;
   }
 
-  private boolean validatePiece(BoardPiece piece) {
+  private boolean validatePiece(ChessPiece piece) {
     if (piece == null) return true;
     if (piece != null && !this.getColor().equals(piece.getColor())) return true;
 
     return false;
+  }
+
+  @Override
+  public String toString() {
+    String textColor = String.format("TXT_COLOR_%s", getColor());
+
+    return String.format(
+      "%s%c",
+      ChessConstants.BOARD_COLORS.get(textColor),
+      ChessConstants.PIECE_ROLES.get(getRole())
+    );
   }
 }

@@ -4,12 +4,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.chess.board.ChessPiece;
+import com.chess.constants.ChessConstants;
 import com.chess.utils.ChessUtils;
 
-public class Queen extends BoardPiece {
-  public Queen(String color, String position) {
-    super("QUEEN", color, position);
-  }
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class Queen implements ChessPiece {
+  private final String role = "QUEEN";
+  private String color;
+  private String position;
 
   @Override
   public void move(String destination, ChessPiece[][] board) {
@@ -17,7 +25,7 @@ public class Queen extends BoardPiece {
     System.out.println(possibleMoves);
 
     if (possibleMoves.contains(destination)) {
-      super.move(destination, board);
+      ChessPiece.super.move(destination, board);
     }
   }
 
@@ -31,7 +39,7 @@ public class Queen extends BoardPiece {
     while(true) {
       if (nextPositionVec[1] < 0) break;
 
-      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      ChessPiece piece = board[nextPositionVec[1]][nextPositionVec[0]];
       if (piece != null) {
         if (this.getColor().equals(piece.getColor())) break;
 
@@ -48,7 +56,7 @@ public class Queen extends BoardPiece {
     while(true) {
       if (nextPositionVec[1] >= 8) break;
 
-      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      ChessPiece piece = board[nextPositionVec[1]][nextPositionVec[0]];
       if (piece != null) {
         if (this.getColor().equals(piece.getColor())) break;
 
@@ -66,7 +74,7 @@ public class Queen extends BoardPiece {
     while(true) {
       if (nextPositionVec[0] < 0) break;
 
-      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      ChessPiece piece = board[nextPositionVec[1]][nextPositionVec[0]];
       if(piece != null) {
         if (this.getColor().equals(piece.getColor())) break;
 
@@ -83,7 +91,7 @@ public class Queen extends BoardPiece {
     while(true) {
       if (nextPositionVec[0] >= 8) break;
 
-      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      ChessPiece piece = board[nextPositionVec[1]][nextPositionVec[0]];
       if (piece != null) {
         if (this.getColor().equals(piece.getColor())) break;
  
@@ -101,7 +109,7 @@ public class Queen extends BoardPiece {
     while(true) {
       if (nextPositionVec[0] < 0 || nextPositionVec[1] < 0) break;
 
-      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      ChessPiece piece = board[nextPositionVec[1]][nextPositionVec[0]];
       if (piece != null) {
         if (this.getColor().equals(piece.getColor())) break;
 
@@ -120,7 +128,7 @@ public class Queen extends BoardPiece {
     while(true) {
       if (nextPositionVec[1] < 0 || nextPositionVec[0] >= 8) break;
 
-      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      ChessPiece piece = board[nextPositionVec[1]][nextPositionVec[0]];
       if (piece != null) {
         if (this.getColor().equals(piece.getColor())) break;
 
@@ -139,7 +147,7 @@ public class Queen extends BoardPiece {
     while(true) {
       if (nextPositionVec[0] < 0 || nextPositionVec[1] >= 8) break;
 
-      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      ChessPiece piece = board[nextPositionVec[1]][nextPositionVec[0]];
       if (piece != null) {
         if (this.getColor().equals(piece.getColor())) break;
 
@@ -158,7 +166,7 @@ public class Queen extends BoardPiece {
     while(true) {
       if (nextPositionVec[0] >= 8 || nextPositionVec[1] >= 8) break;
 
-      BoardPiece piece = (BoardPiece) board[nextPositionVec[1]][nextPositionVec[0]];
+      ChessPiece piece = board[nextPositionVec[1]][nextPositionVec[0]];
       if (piece != null) {
         if (this.getColor().equals(piece.getColor())) break;
 
@@ -173,4 +181,15 @@ public class Queen extends BoardPiece {
 
     return possibleMoves;
   }
+
+  @Override
+  public String toString() {
+    String textColor = String.format("TXT_COLOR_%s", getColor());
+
+    return String.format(
+      "%s%c",
+      ChessConstants.BOARD_COLORS.get(textColor),
+      ChessConstants.PIECE_ROLES.get(getRole())
+    );
+  } 
 }
