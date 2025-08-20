@@ -2,62 +2,37 @@ package com.chess.match;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.chess.board.ChessBoard;
 import com.chess.board.ChessPiece;
-import com.chess.match.piece.Bishop;
-import com.chess.match.piece.King;
-import com.chess.match.piece.Knight;
-import com.chess.match.piece.Pawn;
-import com.chess.match.piece.Queen;
-import com.chess.match.piece.Rook;
 import com.chess.constants.ChessConstants;
 import com.chess.utils.ChessUtils;
 
-public class MatchBoard extends ChessBoard {
+public class MatchBoard implements ChessBoard {
   private String currentTurn = "WHITE";
+  private ChessPiece[][] board;
 
   public MatchBoard() {
-    ChessPiece[][] board = getBoard();
+    this.board = new ChessPiece[8][8];
+    Set<String> initPositionsKeySet = ChessConstants.INIT_POSITIONS.keySet();
 
-    ChessConstants
-      .INIT_POSITIONS
-      .keySet()
-      .forEach(key->{
-        String role = key.split("_")[1];
-        String color = key.split("_")[0];
+    for (String key : initPositionsKeySet) {
+      Set<String> initialPositionSet = ChessConstants.INIT_POSITIONS.get(key);
 
-        for (String rawPosition : ChessConstants.INIT_POSITIONS.get(key)) {
-          int[] position = ChessUtils.mapPositionToBoardIndexes(rawPosition);
-          switch(role) {
-            case "KING":
-              ChessPiece king = new King(color, rawPosition);
-              board[position[1]][position[0]] = king;
-              break;
-            case "QUEEN":
-              ChessPiece queen = new Queen(color, rawPosition);
-              board[position[1]][position[0]] = queen;
-              break;
-            case "BISHOP":
-              ChessPiece bishop = new Bishop(color, rawPosition);
-              board[position[1]][position[0]] = bishop;
-              break;
-            case "KNIGHT":
-              ChessPiece knight = new Knight(color, rawPosition);
-              board[position[1]][position[0]] = knight;
-              break;
-            case "ROOK":
-              ChessPiece rook = new Rook(color, rawPosition);
-              board[position[1]][position[0]] = rook;
-              break;
-            case "PAWN":
-            default:
-              ChessPiece pawn = new Pawn(color, rawPosition);
-              board[position[1]][position[0]] = pawn;
-              break;
-          }
-        }
-      });
+      String role = key.split("_")[1];
+      String color = key.split("_")[0];
+
+      for (String rawPosition : initialPositionSet) {
+        int[] position = ChessUtils.mapPositionToBoardIndexes(rawPosition);
+        ChessPiece piece = ChessPiece.createPiece(role, color, rawPosition);
+        board[position[1]][position[0]] = piece;
+      }
+    };
+  }
+
+  public ChessPiece[][] getBoard() {
+    return board;
   }
 
   @Override
@@ -104,10 +79,6 @@ public class MatchBoard extends ChessBoard {
           piece == null ? " " : piece,
           ChessConstants.BOARD_COLORS.get("COLOR_RESET")
         ));
-
-        // if (colIndex < row.length-1) {
-        //   builder.append("|");
-        // }
       }
 
       if (rowIndex == 0) {
@@ -116,7 +87,6 @@ public class MatchBoard extends ChessBoard {
 
       if (rowIndex != board.length-1) {
         builder.append("\n");
-      //   builder.append("\n  -------------------------------\n");
       }
     }
 
