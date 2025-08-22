@@ -7,11 +7,11 @@ import com.chess.match.piece.*;
 import com.chess.constants.ChessConstants;
 
 public interface ChessPiece {
-  public Set<String> calculatePossibleMoves(ChessPiece[][] board);
-  public String getColor();
-  public String getPosition();
-  public String getRole();
-  public void setPosition(String position);
+  Set<String> calculatePossibleMoves(ChessPiece[][] board);
+  String getColor();
+  String getPosition();
+  String getRole();
+  void setPosition(String position);
 
   default void move(String destination, ChessPiece[][] board) {
     int[] sPosition = ChessUtils.mapPositionToBoardIndexes(getPosition());
