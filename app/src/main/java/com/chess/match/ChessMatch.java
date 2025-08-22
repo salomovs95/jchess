@@ -16,7 +16,7 @@ public class ChessMatch {
     Scanner scan = null;
     boolean quit = false;
 
-    while(!quit) {
+    while(true) {
       try {
         scan = new Scanner(System.in);
         System.out.print("Piece to move: ");
@@ -27,13 +27,18 @@ public class ChessMatch {
 
         board.movePiece(source, destination);
       } catch (Exception e) {
-        System.out.println("EXCEPTION: " + e.getLocalizedMessage());
+        // System.out.println("EXCEPTION: " + e.getLocalizedMessage());
+        e.printStackTrace();
 
-        if (scan != null) {
-          System.out.print("Quit? (y/N) ");
-          quit = scan.nextLine().toUpperCase().equals("Y");
+        if (scan == null) break;
+
+        System.out.print("Quit? (y/N) ");
+        if (scan.nextLine().toUpperCase().equals("Y")) {
           scan.close();
+          break;
         }
+        
+        board.updateBoard();
       }
     }
   }
