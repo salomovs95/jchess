@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.chess.board.exception.BoardException;
 import com.chess.board.ChessBoard;
 import com.chess.board.ChessPiece;
 import com.chess.constants.ChessConstants;
@@ -43,10 +44,10 @@ public class MatchBoard implements ChessBoard {
     ChessPiece piece =  board[srcPosition[1]][srcPosition[0]];
 
     if (piece == null)
-      throw new RuntimeException("Invalid Move! No piece is at provided source.");
+      throw new BoardException("Invalid Move! No piece is at provided source.");
 
     if (!piece.getColor().equals(currentTurn))
-      throw new RuntimeException("Inavlid movement, player " + " was trying to move " + piece.getColor() + " piece , current player is: " + currentTurn);
+      throw new BoardException("Inavlid movement, player " + " was trying to move " + piece.getColor() + " piece , current player is: " + currentTurn);
 
     piece.move(destination, board);
     currentTurn = currentTurn.equals("WHITE") ? "BLACK" : "WHITE";
@@ -110,7 +111,7 @@ public class MatchBoard implements ChessBoard {
     try {
       Thread.sleep(arg0);
     } catch(Exception e) {
-      System.out.println("EXCEPTION: " + e.getLocalizedMessage());
+      throw new BoardException(e.getLocalizedMessage());
     }
   }
 }

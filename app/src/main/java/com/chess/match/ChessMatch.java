@@ -27,8 +27,7 @@ public class ChessMatch {
 
         board.movePiece(source, destination);
       } catch (Exception e) {
-        // System.out.println("EXCEPTION: " + e.getLocalizedMessage());
-        e.printStackTrace();
+        System.out.println("EXCEPTION: " + e.getLocalizedMessage());
 
         if (scan == null) break;
 
