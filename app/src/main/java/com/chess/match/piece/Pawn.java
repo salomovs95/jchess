@@ -22,7 +22,6 @@ public class Pawn implements ChessPiece {
   @Override
   public void move(String destination, ChessPiece[][] board) {
     var possibleMoves = calculatePossibleMoves(board);
-    System.out.println(possibleMoves);
 
     if(possibleMoves.contains(destination)) {
       ChessPiece.super.move(destination, board);

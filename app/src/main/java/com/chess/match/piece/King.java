@@ -22,7 +22,6 @@ public class King implements ChessPiece {
   @Override
   public void move(String destination, ChessPiece[][] board) {
     Set<String> possibleMoves = calculatePossibleMoves(board);
-    System.out.println(possibleMoves);
 
     if (possibleMoves.contains(destination)) {
       ChessPiece.super.move(destination, board);
