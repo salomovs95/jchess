@@ -21,7 +21,7 @@ public class King implements ChessPiece {
 
   @Override
   public void move(String destination, ChessPiece[][] board) {
-    Set<String> possibleMoves = calculatePossibleMoves(board);
+    Set<String> possibleMoves = calculatePossibleMoves(getPosition(), board);
 
     if (possibleMoves.contains(destination)) {
       ChessPiece.super.move(destination, board);
@@ -29,9 +29,9 @@ public class King implements ChessPiece {
   }
 
   @Override
-  public Set<String> calculatePossibleMoves(ChessPiece[][] board) {
+  public Set<String> calculatePossibleMoves(String position, ChessPiece[][] board) {
     Set<String> possibleMoves = new HashSet<>();
-    int[] positionVec = ChessUtils.mapPositionToBoardIndexes(getPosition());
+    int[] positionVec = ChessUtils.mapPositionToBoardIndexes(position);
 
     if (positionVec[1]-1 >= 0) {
       // TODO: Position Above

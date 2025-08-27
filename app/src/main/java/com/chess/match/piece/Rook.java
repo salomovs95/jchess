@@ -21,7 +21,7 @@ public class Rook implements ChessPiece {
 
   @Override
   public void move(String destination, ChessPiece[][] board) {
-    var possibleMoves = calculatePossibleMoves(board);
+    var possibleMoves = calculatePossibleMoves(getPosition(), board);
 
     if (possibleMoves.contains(destination)) {
       ChessPiece.super.move(destination, board);
@@ -29,7 +29,7 @@ public class Rook implements ChessPiece {
   }
 
   @Override
-  public Set<String> calculatePossibleMoves(ChessPiece[][] board) {
+  public Set<String> calculatePossibleMoves(String position, ChessPiece[][] board) {
     int[] positionVector = ChessUtils.mapPositionToBoardIndexes(position);
     Set<String> availablePositions = new HashSet<>();
 

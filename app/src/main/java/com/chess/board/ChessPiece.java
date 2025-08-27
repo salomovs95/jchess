@@ -7,7 +7,7 @@ import com.chess.match.piece.*;
 import com.chess.constants.ChessConstants;
 
 public interface ChessPiece {
-  Set<String> calculatePossibleMoves(ChessPiece[][] board);
+  Set<String> calculatePossibleMoves(String position, ChessPiece[][] board);
   String getColor();
   String getPosition();
   String getRole();

@@ -21,7 +21,7 @@ public class Knight implements ChessPiece {
 
   @Override
   public void move(String destination, ChessPiece[][] board) {
-    var possibleMoves = calculatePossibleMoves(board);
+    var possibleMoves = calculatePossibleMoves(getPosition(), board);
 
     if (possibleMoves.contains(destination)) {
       ChessPiece.super.move(destination, board);
@@ -29,8 +29,8 @@ public class Knight implements ChessPiece {
   }
 
   @Override
-  public Set<String> calculatePossibleMoves(ChessPiece[][] board) {
-    int[] positionVec = ChessUtils.mapPositionToBoardIndexes(getPosition());
+  public Set<String> calculatePossibleMoves(String position, ChessPiece[][] board) {
+    int[] positionVec = ChessUtils.mapPositionToBoardIndexes(position);
     Set<String> possibleMoves = new HashSet<>();
 
     if (positionVec[1]-2 >= 0) {

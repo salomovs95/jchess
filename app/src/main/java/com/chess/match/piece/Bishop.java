@@ -21,7 +21,7 @@ public class Bishop implements ChessPiece {
 
   @Override
   public void move(String destination, ChessPiece[][] board) {
-    var possibleMoves = calculatePossibleMoves(board);
+    var possibleMoves = calculatePossibleMoves(getPosition(), board);
 
     if (possibleMoves.contains(destination)) {
       ChessPiece.super.move(destination, board);
@@ -29,9 +29,9 @@ public class Bishop implements ChessPiece {
   }
 
   @Override
-  public Set<String> calculatePossibleMoves(ChessPiece[][] board) {
+  public Set<String> calculatePossibleMoves(String position, ChessPiece[][] board) {
     Set<String> possibleMoves = new HashSet<>();
-    int[] positionVec = ChessUtils.mapPositionToBoardIndexes(getPosition());
+    int[] positionVec = ChessUtils.mapPositionToBoardIndexes(position);
 
     while(true) {
       if (positionVec[0]<0 || positionVec[1]<0) break;
